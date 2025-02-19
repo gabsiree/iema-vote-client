@@ -1,6 +1,8 @@
-/* Voting Screen Styles */
+/* ============================== */
+/*         GENERAL STYLES         */
+/* ============================== */
 
-/* Main Container */
+/* Main Voting Container */
 .voting-container {
     align-items: center;
     background-color: #f3f4f6;
@@ -13,126 +15,215 @@
     animation: fadeIn 1s ease-in-out;
 }
 
-/* Student Search Input */
+/* ============================== */
+/*      STUDENT SEARCH INPUT      */
+/* ============================== */
+
+/* Search Input Box */
 .student-search {
-    padding: 12px;
-    font-size: 1.2rem;
-    border-radius: 10px;
+    padding: 18px;
+    font-size: 1.3rem;
+    border-radius: 12px;
     border: 2px solid #e5e7eb;
-    width: 320px;
+    width: 450px;
     margin-bottom: 15px;
-    transition: box-shadow 0.3s;
+    transition: box-shadow 0.3s ease-in-out;
 }
 
+/* Hover & Focus Effect on Input */
 .student-search:focus {
     border-color: #2563eb;
-    box-shadow: 0px 0px 10px rgba(37, 99, 235, 0.5);
+    box-shadow: 0px 0px 12px rgba(37, 99, 235, 0.5);
     outline: none;
 }
 
-/* Student List - Larger Size */
+/* ============================== */
+/*       STUDENT NAME LIST        */
+/* ============================== */
+
+/* Student List Box */
 .student-list {
     border: 2px solid #e5e7eb;
     border-radius: 12px;
-    height: 200px; /* Increased height for larger display */
-    width: 800px;  /* Increased width for better readability */
+    height: 220px;
+    width: 500px;
     overflow-y: auto;
     animation: fadeInUp 0.7s ease-in-out;
 }
 
-/* Student Item */
+/* Hidden List */
+.student-list.hidden {
+    display: none;
+}
+
+/* Individual Student Item */
 .student-item {
-    padding: 12px;
-    font-size: 1.1rem;
+    padding: 14px;
+    font-size: 1.2rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease-in-out;
     border-bottom: 1px solid #e5e7eb;
 }
 
+/* Hover Effect on Student Item */
 .student-item:hover {
     background-color: #e0e7ff;
 }
 
+/* Selected Student Highlight */
 .student-item.selected {
     background-color: #3b82f6;
     color: white;
     font-weight: bold;
 }
 
+/* ============================== */
+/*      CLASS SELECTION MENU      */
+/* ============================== */
+
 /* Class Selection Dropdown */
 .class-select {
-    padding: 10px;
+    padding: 16px;
     font-size: 1.2rem;
-    border-radius: 10px;
+    border-radius: 12px;
     border: 2px solid #d1d5db;
-    width: 250px;
-    transition: box-shadow 0.3s;
+    width: 300px;
+    transition: box-shadow 0.3s ease-in-out;
 }
 
-/* Class Selection Focus */
+/* Focus Effect on Class Selection */
 .class-select:focus {
     border-color: #1d4ed8;
     box-shadow: 0px 0px 12px rgba(29, 78, 216, 0.4);
     outline: none;
 }
 
-/* Candidate List */
-.candidate-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+/* Disabled Class Selection */
+.class-select:disabled {
+    background-color: #e5e7eb;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* ============================== */
+/*       CANDIDATE SECTION        */
+/* ============================== */
+
+/* Section Title */
+.section-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #374151;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+/* Candidate Grid Layout */
+.candidate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
     justify-content: center;
-    list-style-type: none;
-    padding: 0;
+    margin-top: 20px;
+    max-width: 800px;
 }
 
-/* Candidate Item */
-.candidate-item {
+/* Candidate Card */
+.candidate-card {
+    align-items: center;
+    background-color: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: center;
+    width: 180px;
+    height: 250px;
+    overflow: hidden;
+}
+
+/* Hover Effect on Candidate Card */
+.candidate-card:hover {
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* Selected Candidate Styling */
+.candidate-card.selected {
+    border: 3px solid #1e40af;
     background-color: #dbeafe;
-    padding: 10px 15px;
-    font-size: 1.1rem;
-    border-radius: 8px;
-    color: #1e40af;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0px 6px 20px rgba(29, 78, 216, 0.4);
 }
 
-.candidate-item:hover {
-    background-color: #bfdbfe;
-    transform: scale(1.05);
+/* Candidate Image - Rectangular */
+.candidate-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }
 
-.candidate-item.selected {
-    background-color: #1e40af;
-    color: white;
+/* Candidate Name */
+.candidate-name {
+    color: #1f2937;
+    font-size: 1rem;
     font-weight: bold;
-    transform: scale(1.1);
+    margin-top: 10px;
+    text-align: center;
+    padding: 0 12px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
 }
 
-/* Vote Button */
+/* Candidate Description Box */
+.candidate-info {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-top: 5px;
+    text-align: center;
+    padding: 5px 10px;
+}
+
+/* ============================== */
+/*          VOTE BUTTON           */
+/* ============================== */
+
+/* Submit Vote Button */
 .vote-button {
-    padding: 12px 25px;
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: white;
     background-color: #10b981;
-    border-radius: 10px;
     border: none;
+    border-radius: 10px;
+    color: white;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-top: 20px;
+    padding: 15px 35px;
+    transition: background-color 0.3s ease-in-out;
 }
 
+/* Hover Effect on Vote Button */
 .vote-button:hover {
     background-color: #059669;
-    transform: translateY(-2px);
 }
 
-/* Animations */
+/* ============================== */
+/*           ANIMATIONS           */
+/* ============================== */
+
+/* Fade-In Effect */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
+/* Slide-In Effect */
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }

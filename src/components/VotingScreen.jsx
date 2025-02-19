@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import apiClient from "../api/apiClient";
 import { useNavigate } from "react-router-dom";
-
 import "../styles/voting.css";
+import defaultImage from "../assets/candidates/default.jpg"; // Default image
 
 const VotingScreen = () => {
     const classes = [
@@ -15,10 +15,12 @@ const VotingScreen = () => {
     const [students, setStudents] = useState([]);
     const [selectedStudent, setSelectedStudent] = useState(null);
     const [studentSearch, setStudentSearch] = useState("");
+    const [showStudentList, setShowStudentList] = useState(false);
     const [candidates, setCandidates] = useState([]);
     const [selectedCandidate, setSelectedCandidate] = useState(null);
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const studentListRef = useRef(null);
 
     // Fetch students by name
     const fetchStudents = async (name) => {
@@ -40,20 +42,51 @@ const VotingScreen = () => {
         }
     };
 
+    // Function to get candidate image path
+    const getCandidateImage = (name) => {
+        const formattedName = name.replace(/\s+/g, "_");
+        try {
+            return require(`../assets/candidates/${formattedName}.jpg`);
+        } catch {
+            return defaultImage;
+        }
+    };
+
+    // Handle student selection
+    const handleStudentSelect = (student) => {
+        setSelectedStudent(student);
+        setStudentSearch(student.name);
+        setShowStudentList(false); // Hide list after selection
+    };
+
+    // Hide student list when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (studentListRef.current && !studentListRef.current.contains(event.target)) {
+                setShowStudentList(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     // Submit vote
     const handleVote = async () => {
         if (!selectedStudent || !selectedCandidate) {
-            return alert("Please select your name and a candidate.");
+            return alert("Selecione seu nome e um candidato...");
         }
         try {
             await apiClient.post("/vote", {
                 studentId: selectedStudent.student_id,
                 candidateId: selectedCandidate.student_id,
             });
-            alert("Vote submitted successfully.");
+            alert("Voto confirmado...");
             navigate("/");
         } catch (err) {
-            alert("Error submitting vote.");
+            alert("Não foi possível submeter o voto...");
         }
     };
 
@@ -63,28 +96,33 @@ const VotingScreen = () => {
             <input
                 type="text"
                 className="student-search"
-                placeholder="Search your name"
+                placeholder="Informe seu nome"
                 value={studentSearch}
                 onChange={(e) => {
                     setStudentSearch(e.target.value);
+                    setShowStudentList(true);
                     fetchStudents(e.target.value);
                 }}
+                onFocus={() => setShowStudentList(true)}
             />
-            <ul className="student-list">
-                {students.map((student) => (
-                    <li
-                        key={student.student_id}
-                        className={`student-item ${
-                            selectedStudent?.student_id === student.student_id ? "selected" : ""
-                        }`}
-                        onClick={() => setSelectedStudent(student)}
-                    >
-                        {student.name}
-                    </li>
-                ))}
-            </ul>
 
-            {/* Class Selection Dropdown */}
+            {showStudentList && students.length > 0 && (
+                <ul className="student-list" ref={studentListRef}>
+                    {students.map((student) => (
+                        <li
+                            key={student.student_id}
+                            className={`student-item ${
+                                selectedStudent?.student_id === student.student_id ? "selected" : ""
+                            }`}
+                            onClick={() => handleStudentSelect(student)}
+                        >
+                            {student.name}
+                        </li>
+                    ))}
+                </ul>
+            )}
+
+            {/* Class Selection Dropdown (Disabled until a student is selected) */}
             <select
                 className="class-select"
                 value={selectedClass}
@@ -92,8 +130,9 @@ const VotingScreen = () => {
                     setSelectedClass(e.target.value);
                     fetchCandidates(e.target.value);
                 }}
+                disabled={!selectedStudent} // Disable if no student is selected
             >
-                <option value="">-- Select Class --</option>
+                <option value="">Selecione sua turma</option>
                 {classes.map((cls) => (
                     <option key={cls} value={cls}>
                         {cls}
@@ -102,24 +141,29 @@ const VotingScreen = () => {
             </select>
 
             {/* Candidates Section */}
-            {selectedStudent && candidates.length > 0 && (
+            {selectedStudent && selectedClass && candidates.length > 0 && (
                 <>
-                    <h2 className="section-title">Candidates for Class {selectedClass}</h2>
-                    <ul className="candidate-list">
+                    <h2 className="section-title">Candidatos para a turma {selectedClass}</h2>
+                    <div className="candidate-grid">
                         {candidates.map((candidate) => (
-                            <li
+                            <div
                                 key={candidate.student_id}
-                                className={`candidate-item ${
+                                className={`candidate-card ${
                                     selectedCandidate?.student_id === candidate.student_id ? "selected" : ""
                                 }`}
                                 onClick={() => setSelectedCandidate(candidate)}
                             >
-                                {candidate.name}
-                            </li>
+                                <img
+                                    src={getCandidateImage(candidate.name)}
+                                    alt={candidate.name}
+                                    className="candidate-image"
+                                />
+                                <p className="candidate-name">{candidate.name}</p>
+                            </div>
                         ))}
-                    </ul>
+                    </div>
                     <button onClick={handleVote} className="vote-button">
-                        Submit Vote
+                        CONFIRMA
                     </button>
                 </>
             )}
