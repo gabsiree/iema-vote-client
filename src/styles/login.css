@@ -41,9 +41,9 @@
     border: 2px solid #d1d5db;
     border-radius: 10px;
     box-sizing: border-box;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     margin-bottom: 1.5rem;
-    padding: 14px;
+    padding: 18px;
     transition: box-shadow 0.3s ease-in-out;
     width: 100%;
 }
@@ -58,7 +58,7 @@
 /* Error Message Styling */
 .login-error {
     color: #ef4444;
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin: 0;
     padding-bottom: 14px;
     text-align: center;
@@ -69,12 +69,12 @@
 .login-button {
     background-color: #4f46e5;
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     color: white;
     cursor: pointer;
     font-size: 1.2rem;
     font-weight: bold;
-    padding: 12px;
+    padding: 12px 20px;
     transition: box-shadow 0.3s ease-in-out;
 }
 

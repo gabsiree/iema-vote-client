@@ -27,7 +27,6 @@ const LoginScreen = () => {
     return (
         <div className="login-container">
             <div className="login-box">
-                <h1 className="login-title">Acesso restrito</h1>
                 <form onSubmit={handleLogin}>
                     <input
                         type="password"
