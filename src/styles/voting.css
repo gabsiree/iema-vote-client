@@ -25,7 +25,7 @@
     font-size: 1.3rem;
     border-radius: 12px;
     border: 2px solid #e5e7eb;
-    width: 450px;
+    width: 480px;
     margin-bottom: 15px;
     transition: box-shadow 0.3s ease-in-out;
 }
@@ -83,6 +83,12 @@
 
 /* Class Selection Dropdown */
 .class-select {
+    appearance: none;
+    background-color: white;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%231f2937'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E"); /* Custom caret */
+    background-position: right 18px center;
+    background-repeat: no-repeat;
+    background-size: 18px;
     padding: 16px;
     font-size: 1.2rem;
     border-radius: 12px;

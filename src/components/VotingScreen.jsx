@@ -44,9 +44,9 @@ const VotingScreen = () => {
 
     // Function to get candidate image path
     const getCandidateImage = (name) => {
-        const formattedName = name.replace(/\s+/g, "_");
         try {
-            return require(`../assets/candidates/${formattedName}.jpg`);
+            return require(`../assets/candidates/${name}.jpg`);
+
         } catch {
             return defaultImage;
         }
@@ -143,7 +143,7 @@ const VotingScreen = () => {
             {/* Candidates Section */}
             {selectedStudent && selectedClass && candidates.length > 0 && (
                 <>
-                    <h2 className="section-title">Candidatos para a turma {selectedClass}</h2>
+                    <h2 className="section-title">Candidatos a líderes da turma: {selectedClass}</h2>
                     <div className="candidate-grid">
                         {candidates.map((candidate) => (
                             <div
