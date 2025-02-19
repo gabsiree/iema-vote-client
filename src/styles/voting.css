@@ -25,7 +25,7 @@
     font-size: 1.3rem;
     border-radius: 12px;
     border: 2px solid #e5e7eb;
-    width: 480px;
+    width: 450px;
     margin-bottom: 15px;
     transition: box-shadow 0.3s ease-in-out;
 }
@@ -48,7 +48,6 @@
     height: 220px;
     width: 500px;
     overflow-y: auto;
-    animation: fadeInUp 0.7s ease-in-out;
 }
 
 /* Hidden List */
@@ -56,14 +55,29 @@
     display: none;
 }
 
-/* Individual Student Item */
+/* Individual Student Item with Slide Animation */
 .student-item {
     padding: 14px;
     font-size: 1.2rem;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
     border-bottom: 1px solid #e5e7eb;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: slideUp 0.5s ease-in-out forwards;
 }
+
+/* Delayed Animation for Each Student */
+.student-item:nth-child(1) { animation-delay: 0.1s; }
+.student-item:nth-child(2) { animation-delay: 0.2s; }
+student-item:nth-child(3) { animation-delay: 0.3s; }
+student-item:nth-child(4) { animation-delay: 0.4s; }
+student-item:nth-child(5) { animation-delay: 0.5s; }
+student-item:nth-child(6) { animation-delay: 0.6s; }
+student-item:nth-child(7) { animation-delay: 0.7s; }
+student-item:nth-child(8) { animation-delay: 0.8s; }
+student-item:nth-child(9) { animation-delay: 0.9s; }
+student-item:nth-child(10) { animation-delay: 1s; }
 
 /* Hover Effect on Student Item */
 .student-item:hover {
@@ -83,10 +97,10 @@
 
 /* Class Selection Dropdown */
 .class-select {
-    appearance: none;
+    appearance: none; /* Remove default browser styling */
     background-color: white;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%231f2937'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E"); /* Custom caret */
-    background-position: right 18px center;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%231f2937'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    background-position: right 18px center; /* Shift arrow slightly left */
     background-repeat: no-repeat;
     background-size: 18px;
     padding: 16px;
@@ -166,34 +180,25 @@
 /* Candidate Image - Rectangular */
 .candidate-image {
     width: 100%;
-    height: 180px;
+    height: 140px;
     object-fit: cover;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
 }
 
-/* Candidate Name */
+/* Candidate Name - Limited to 2 Lines */
 .candidate-name {
     color: #1f2937;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
     margin-top: 10px;
     text-align: center;
-    padding: 0 12px;
+    padding: 0 8px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2; /* Limit to 2 lines */
     -webkit-box-orient: vertical;
     word-wrap: break-word;
-}
-
-/* Candidate Description Box */
-.candidate-info {
-    font-size: 0.9rem;
-    color: #6b7280;
-    margin-top: 5px;
-    text-align: center;
-    padding: 5px 10px;
 }
 
 /* ============================== */
@@ -208,9 +213,9 @@
     color: white;
     cursor: pointer;
     font-size: 1.3rem;
-    font-weight: 400;
+    font-weight: bold;
     margin-top: 20px;
-    padding: 15px 35px;
+    padding: 12px 25px;
     transition: background-color 0.3s ease-in-out;
 }
 
@@ -222,6 +227,18 @@
 /* ============================== */
 /*           ANIMATIONS           */
 /* ============================== */
+
+/* Slide-Up Effect for Student List */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 /* Fade-In Effect */
 @keyframes fadeIn {
