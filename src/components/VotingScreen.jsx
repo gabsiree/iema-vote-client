@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import apiClient from "../api/apiClient";
 import { useNavigate } from "react-router-dom";
-import "../styles/voting.css";
 import defaultImage from "../assets/candidates/default.jpg"; // Default image
+
+import "../styles/voting.css";
 
 const VotingScreen = () => {
     const classes = [
