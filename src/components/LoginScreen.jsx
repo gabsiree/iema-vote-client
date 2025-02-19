@@ -27,18 +27,19 @@ const LoginScreen = () => {
     return (
         <div className="login-container">
             <div className="login-box">
+                <h1 className="login-title">Voto confirmado...</h1>
                 <form onSubmit={handleLogin}>
                     <input
                         type="password"
                         className="login-input"
-                        placeholder="Digite a senha"
+                        placeholder=""
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                     {error && <p className="login-error">{error}</p>}
                     <button type="submit" className="login-button">
-                        Login
+                        Entrar na urna
                     </button>
                 </form>
             </div>

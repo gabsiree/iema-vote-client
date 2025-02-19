@@ -77,17 +77,22 @@ const VotingScreen = () => {
     // Submit vote
     const handleVote = async () => {
         if (!selectedStudent || !selectedCandidate) {
-            return alert("Selecione seu nome e um candidato...");
+            return alert("Please select your name and a candidate.");
         }
+
         try {
             await apiClient.post("/vote", {
                 studentId: selectedStudent.student_id,
                 candidateId: selectedCandidate.student_id,
             });
-            alert("Voto confirmado...");
+
+            // Play confirmation sound
+            const confirmationSound = new Audio(require("../assets/sounds/confirmacao.mp3"));
+            confirmationSound.play();
             navigate("/");
+
         } catch (err) {
-            alert("Não foi possível submeter o voto...");
+            alert("Error submitting vote.");
         }
     };
 
