@@ -15,12 +15,23 @@ const LoginScreen = () => {
         setError("");
         try {
             const response = await apiClient.post("/auth/login", { password });
-            const { token } = response.data;
-            setToken(token);
+            setToken(response.data.token);
             navigate("/voting");
 
         } catch (err) {
-            setError(err.response?.data?.error || "Failed to login.");
+            setError(err.response?.data?.error || "Failed to login...");
+        }
+    };
+
+    const generateReport = async (e) => {
+        e.preventDefault();
+        setError("");
+        try {
+            await apiClient.post("/auth/login", { password });
+            await fetchReport();
+
+        } catch (err) {
+            setError(err.response?.data?.error || "Failed to generate report...");
         }
     };
 
@@ -29,10 +40,11 @@ const LoginScreen = () => {
         try {
             const response = await apiClient.get("/report/generate", { responseType: "blob" });
 
+            // Create and trigger download
             const url = window.URL.createObjectURL(new Blob([response.data], { type: "application/pdf" }));
             const a = document.createElement("a");
             a.href = url;
-            a.download = "Election_Report.pdf";
+            a.download = "Resultado.pdf";
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -50,7 +62,7 @@ const LoginScreen = () => {
                     <input
                         type="password"
                         className="login-input"
-                        placeholder=""
+                        placeholder="Digite sua senha"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
@@ -61,7 +73,7 @@ const LoginScreen = () => {
                     </button>
                 </form>
 
-                <button className="report-button" onClick={fetchReport}>
+                <button className="report-button" onClick={generateReport}>
                     Gerar relatório
                 </button>
             </div>
