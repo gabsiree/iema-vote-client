@@ -60,6 +60,11 @@ const VotingScreen = () => {
         setShowStudentList(false); // Hide list after selection
     };
 
+    const handleNameInputFocus = () => {
+        setSelectedClass("");
+        setCandidates([]);
+    };
+
     // Hide student list when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -109,7 +114,7 @@ const VotingScreen = () => {
                     setShowStudentList(true);
                     fetchStudents(e.target.value);
                 }}
-                onFocus={() => setShowStudentList(true)}
+                onFocus={handleNameInputFocus}
             />
 
             {showStudentList && students.length > 0 && (
@@ -136,7 +141,7 @@ const VotingScreen = () => {
                     setSelectedClass(e.target.value);
                     fetchCandidates(e.target.value);
                 }}
-                disabled={!selectedStudent} // Disable if no student is selected
+                disabled={!selectedStudent} // Disabled if no student is selected
             >
                 <option value="">Selecione sua turma</option>
                 {classes.map((cls) => (
