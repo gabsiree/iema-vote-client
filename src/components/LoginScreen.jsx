@@ -24,6 +24,24 @@ const LoginScreen = () => {
         }
     };
 
+    // Fetch and Download Report
+    const fetchReport = async () => {
+        try {
+            const response = await apiClient.get("/report/generate", { responseType: "blob" });
+
+            const url = window.URL.createObjectURL(new Blob([response.data], { type: "application/pdf" }));
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "Election_Report.pdf";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+        } catch (err) {
+            alert("Error generating PDF report...");
+        }
+    };
+
     return (
         <div className="login-container">
             <div className="login-box">
@@ -42,6 +60,10 @@ const LoginScreen = () => {
                         Entrar na urna
                     </button>
                 </form>
+
+                <button className="report-button" onClick={fetchReport}>
+                    Gerar relatório
+                </button>
             </div>
         </div>
     );

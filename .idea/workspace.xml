@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b33b5559-3ae7-4c09-a49b-7f3220fc5908" name="Changes" comment="Applying animations">
+    <list default="true" id="b33b5559-3ae7-4c09-a49b-7f3220fc5908" name="Changes" comment="Improving frontend">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/LoginScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoginScreen.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/VotingScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/VotingScreen.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/voting.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/voting.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +116,7 @@
       <workItem from="1739961963911" duration="5655000" />
       <workItem from="1739989554937" duration="3093000" />
       <workItem from="1739998401732" duration="4000" />
-      <workItem from="1739998450492" duration="4273000" />
+      <workItem from="1739998450492" duration="7901000" />
     </task>
     <task id="LOCAL-00001" summary="Implementing voting process">
       <option name="closed" value="true" />
@@ -180,7 +182,23 @@
       <option name="project" value="LOCAL" />
       <updated>1740001841180</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Uploading students pictures">
+      <option name="closed" value="true" />
+      <created>1740003305980</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1740003305980</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Improving frontend">
+      <option name="closed" value="true" />
+      <created>1740003360140</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1740003360140</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,6 +210,8 @@
     <MESSAGE value="Implementing better appearance for class selector" />
     <MESSAGE value="Refactoring" />
     <MESSAGE value="Applying animations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Applying animations" />
+    <MESSAGE value="Uploading students pictures" />
+    <MESSAGE value="Improving frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improving frontend" />
   </component>
 </project>
