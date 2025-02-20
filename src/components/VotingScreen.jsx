@@ -173,6 +173,10 @@ const VotingScreen = () => {
                     </button>
                 </>
             )}
+
+            <footer className="voting-footer">
+                Feito com ❤️ Prof. Gabriel
+            </footer>
         </div>
     );
 };
