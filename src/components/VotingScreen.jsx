@@ -81,13 +81,13 @@ const VotingScreen = () => {
 
     // Submit vote
     const handleVote = async () => {
-        if (!selectedStudent || !selectedCandidate) {
-            return alert("Please select your name and a candidate.");
+        if (!selectedCandidate) {
+            return alert("Selecione seu candidato...");
         }
 
         try {
             await apiClient.post("/vote", {
-                studentId: selectedStudent.student_id,
+                studentId: 999,
                 candidateId: selectedCandidate.student_id,
             });
 
@@ -103,37 +103,7 @@ const VotingScreen = () => {
 
     return (
         <div className="voting-container">
-            {/* Student Name Search */}
-            <input
-                type="text"
-                className="student-search"
-                placeholder="Informe seu nome"
-                value={studentSearch}
-                onChange={(e) => {
-                    setStudentSearch(e.target.value);
-                    setShowStudentList(true);
-                    fetchStudents(e.target.value);
-                }}
-                onFocus={handleNameInputFocus}
-            />
-
-            {showStudentList && students.length > 0 && (
-                <ul className="student-list" ref={studentListRef}>
-                    {students.map((student) => (
-                        <li
-                            key={student.student_id}
-                            className={`student-item ${
-                                selectedStudent?.student_id === student.student_id ? "selected" : ""
-                            }`}
-                            onClick={() => handleStudentSelect(student)}
-                        >
-                            {student.name}
-                        </li>
-                    ))}
-                </ul>
-            )}
-
-            {/* Class Selection Dropdown (Disabled until a student is selected) */}
+            {/* Class Selection Dropdown */}
             <select
                 className="class-select"
                 value={selectedClass}
@@ -141,7 +111,6 @@ const VotingScreen = () => {
                     setSelectedClass(e.target.value);
                     fetchCandidates(e.target.value);
                 }}
-                disabled={!selectedStudent} // Disabled if no student is selected
             >
                 <option value="">Selecione sua turma</option>
                 {classes.map((cls) => (
@@ -152,7 +121,7 @@ const VotingScreen = () => {
             </select>
 
             {/* Candidates Section */}
-            {selectedStudent && selectedClass && candidates.length > 0 && (
+            {selectedClass && candidates.length > 0 && (
                 <>
                     <h2 className="section-title">Candidatos a líderes da turma: {selectedClass}</h2>
                     <div className="candidate-grid">
